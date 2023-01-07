@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		try (Scanner scan = new Scanner(System.in)) {
+			int n = scan.nextInt();// how many entry
+
+			int array[] = new int[n];// array created
+
+			for (int i = 0; i < n; i++) {
+				int element = scan.nextInt();
+				array[i] = element;// elements added array
+			}
+
+			List<int[]> array2 = new ArrayList<>(); // array for subdomains
+
+			// added subdomains
+			for (int i = 0; i < n; i++) {
+				for (int j = i + 1; j <= n; j++) {
+					int[] subarray = Arrays.copyOfRange(array, i, j);
+					array2.add(subarray);
+				}
+			}
+
+			/*
+			 * just for read
+			 * 
+			 * for (int i = 0; i < array2.size(); i++) { int[] subarray = array2.get(i); for
+			 * (int j = 0; j < subarray.length; j++) { System.out.print(subarray[j] + " ");
+			 * } System.out.println(); }
+			 * 
+			 */
+
+			int counter = 0;
+
+			for (int i = 0; i < array2.size(); i++) {
+				int[] subarray = array2.get(i);
+				int sum = 0;
+				for (int j = 0; j < subarray.length; j++) {
+					sum += subarray[j];
+				}
+				if (sum < 0) {
+					counter += 1;
+				}
+			}
+			System.out.println(counter);
+		}
+
+	}
+}
